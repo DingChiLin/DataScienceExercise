@@ -1,0 +1,14 @@
+CREATE VIEW Search_Key AS
+SELECT 'q' as docid, 'washington' as term, 1 as count
+UNION
+SELECT 'q' as docid, 'taxes' as term, 1 as count
+UNION
+SELECT 'q' as docid, 'treasury' as term, 1 as count;
+
+SELECT f1.docid, f2.docid, SUM(f1.count*f2.count)
+FROM Search_Key as f1, Frequency as f2
+WHERE f1.term = f2.term
+GROUP BY f1.docid, f2.docid
+ORDER BY SUM(f1.count*f2.count) DESC
+LIMIT 10;
+

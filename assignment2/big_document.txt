@@ -1,0 +1,3 @@
+SELECT * FROM Frequency GROUP BY docid HAVING COUNT(term) > 300;
+
+
